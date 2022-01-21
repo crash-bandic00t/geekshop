@@ -1,10 +1,15 @@
 from django.shortcuts import render
 
 def index(request):
-    return render(request, 'main/index.html')
+    data = {
+        'header_class': 'slider',
+        
+    }
+    return render(request, 'main/index.html', data)
 
 
 def contact(request):
+
     return render(request, 'main/contact.html')
 
 
