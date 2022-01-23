@@ -1,4 +1,7 @@
 from django.shortcuts import render
+from .models import *
+from django.shortcuts import get_object_or_404
+
 
 header_menu = [
     {'url':'index', 'name':'домой'},
@@ -39,8 +42,21 @@ def products(request):
             'image': 'img/product-31.jpg'
         }
     ]
+    get_product_types = ProductTypes.objects.all()
     return render(request, 'main/products.html', context={
         'title': 'Продукты',
         'menu': header_menu,
         'products': products,
+        'product_types': get_product_types
+    })
+
+def product_type (request, prod_type):
+    get_product_types = ProductTypes.objects.all()
+    get_type_id = get_object_or_404(ProductTypes, slug=prod_type).id
+    get_products_by_type = Products.objects.filter(product_type=get_type_id)[:3]
+    return render(request, 'main/product_by_types.html', context={
+        'title': 'Продукты',
+        'menu': header_menu,
+        'products': get_products_by_type,
+        'product_types': get_product_types
     })
