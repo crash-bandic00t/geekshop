@@ -1,0 +1,23 @@
+version: '3.1'
+
+volumes:
+  mysql_geekshop:
+    name: mysql_geekshop
+
+services:
+
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_USER: 'django_db'
+      MYSQL_PASSWORD: 1234
+      MYSQL_DATABASE: 'geekshop'
+    ports:
+      - 3306:3306
+      
+
+    volumes:
+      - mysql_geekshop:/var/lib/mysql 
