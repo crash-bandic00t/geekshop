@@ -190,7 +190,10 @@ html, body {
 	background-color: #212121;
 	margin: 0px;
 }
-
+.product_img {
+	width: 370px;
+	height: 370px;
+}
 .featured {
 	padding-left: 98px;
 	padding-right: 98px;

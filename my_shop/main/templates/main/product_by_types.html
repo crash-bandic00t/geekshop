@@ -1,0 +1,40 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+	<div class="container">
+		<div class="hero-white">
+			{% include 'main/menu.html' %}
+		</div>
+		<div class="details">
+			<div class="links clearfix">
+				<ul class="links-menu">
+					{% for product_type in product_types %}
+						<li><a href="{% url 'prod_type' product_type.slug %}">{{ product_type }}</a></li>
+					{% endfor %}
+				</ul>
+			</div>
+			<div class="related">
+				<div class="title clearfix">
+					<h2>Наши {{prod_type}}</h2>
+				</div>
+				<div class="related-products clearfix">
+					{% for product in products %}
+						<div class="block">
+							<a href="#"><img class="product_img" src="{{ product.image.url }}" alt="">
+								<div class="text">
+									<img src="/static/img/icon-hover.png" alt="img">
+									<h4>{{ product.name }}</h4>
+									<p>{{ product.desc}}</p>
+								</div>
+							</a>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+
+		<div class="clr"></div>
+	</div>	
+
+
+{% endblock content %}
