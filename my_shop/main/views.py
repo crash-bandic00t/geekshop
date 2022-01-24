@@ -52,11 +52,12 @@ def products(request):
 
 def product_type (request, prod_type):
     get_product_types = ProductTypes.objects.all()
-    get_type_id = get_object_or_404(ProductTypes, slug=prod_type).id
-    get_products_by_type = Products.objects.filter(product_type=get_type_id)[:3]
+    get_type = get_object_or_404(ProductTypes, slug=prod_type)
+    get_products_by_type = Products.objects.filter(product_type=get_type.id)[:3]
     return render(request, 'main/product_by_types.html', context={
         'title': 'Продукты',
         'menu': header_menu,
         'products': get_products_by_type,
-        'product_types': get_product_types
+        'product_types': get_product_types,
+        'prod_type': get_type.name
     })
