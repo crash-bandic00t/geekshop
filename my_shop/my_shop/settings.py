@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': 'geekshop',
         'USER': 'django_db',
         'PASSWORD': '1234',
-        'HOST': 'localhost',
+        'HOST': '127.0.0.1',
         'PORT': '3306',
     }
 }
