@@ -25,23 +25,6 @@ def contact(request):
 
 
 def products(request):
-    products = [
-        {
-            'name': 'Лампа 1',
-            'desc': 'Классная лампа!',
-            'image': 'img/product-11.jpg'
-        },
-        {
-            'name': 'Стул',
-            'desc': 'Супер стул!',
-            'image': 'img/product-21.jpg'
-        },
-        {
-            'name': 'Лампа 2',
-            'desc': 'Офигенная лампа!',
-            'image': 'img/product-31.jpg'
-        }
-    ]
     get_product_types = ProductTypes.objects.all()
     return render(request, 'main/products.html', context={
         'title': 'Продукты',
