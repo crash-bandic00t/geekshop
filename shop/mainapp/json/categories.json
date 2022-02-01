@@ -1,0 +1,14 @@
+[
+    {
+        "name":"Стулья",
+        "slug":"stulya"
+    },
+    {
+        "name":"Столы",
+        "slug":"stoly"
+    },
+    {
+        "name":"Лампы",
+        "slug":"lampy"
+    }
+]
