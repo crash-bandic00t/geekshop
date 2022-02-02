@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import *
 
 
 menu_links = [
@@ -26,10 +27,12 @@ def index(request):
     })
 
 def products(request):
+    get_products = Products.objects.all()[:3]
     return render(request, 'mainapp/products.html', context={
         'title': 'Продукты',
         'class_name': 'hero-white',
-        'menu_links': menu_links
+        'menu_links': menu_links,
+        'products': get_products
     })
 
 def product_type(request):
