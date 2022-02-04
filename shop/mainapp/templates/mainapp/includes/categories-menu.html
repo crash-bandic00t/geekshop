@@ -1,0 +1,20 @@
+<ul class="links-menu">
+    <li>
+        <a href="{% url 'mainapp:products' %}"
+        {% if request.path == '/products/' %}
+            class="active" 
+        {% endif %}>
+        все
+        </a>
+    </li>
+    {% for category in categories %}
+        <li>
+            <a href="{% url 'mainapp:products-by-category' category.slug %}" 
+            {% if category.name == category_name %}
+                class="active"
+            {% endif %}>
+            {{ category.name|title }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>

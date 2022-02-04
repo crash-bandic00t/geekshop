@@ -1,0 +1,32 @@
+<ul class="menu">
+    {% for menu in menu_links %}
+    <li><a href="{% url menu.url %}"
+        {% if request.resolver_match.view_name == menu.url or request.resolver_match.view_name == menu.url_products %} 
+            class="active"
+        {% endif %}>
+            {{ menu.name }}
+        </a>
+    </li>
+    {% endfor %}
+    <li>
+        {% if user.is_authenticated %}
+            <a href="{% url 'authapp:edit' %}"
+            {% if request.resolver_match.view_name == 'authapp:edit' %}
+                class="active"
+            {% endif %}
+            >{{ request.user.first_name }}</a>
+            <a href="{% url 'authapp:logout' %}">выйти</a>
+        {% else %}
+            <a href="{% url 'authapp:login' %}"
+            {% if request.resolver_match.view_name == 'authapp:login' %}
+                class="active"
+            {% endif %}
+            >войти</a>
+            <a href="{% url 'authapp:register' %}"
+            {% if request.resolver_match.view_name == 'authapp:register' %}
+                class="active"
+            {% endif %}
+            >регистрация</a>
+        {% endif %}
+    </li>
+</ul>
