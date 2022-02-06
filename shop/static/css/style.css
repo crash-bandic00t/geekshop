@@ -548,6 +548,7 @@ html, body {
 	padding-left: 99px;
 	padding-right: 98px;
 	margin: -384px auto 0;
+	/* margin-top: 20px; */
 	clear: both;
 }
 .footer form {
@@ -1030,6 +1031,7 @@ td:first-child {
 .related-products .block {
 	float: left;
 	margin-right: 30px;
+	margin-bottom: 30px;
 	display: block;
 	height: 370px;
 	width: 370px;

@@ -1,0 +1,22 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block content %}
+<div class="col-md-4">
+    <h2>Личный кабинет</h2>
+    <br>
+    <form class="form-horizontal" action="{% url 'authapp:edit' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ edit_form.as_p }}
+        <br>
+        <input class="form-control" type="submit" value="сохранить">
+    </form>
+    <button class="btn btn-round form-control last">
+        <a href="{% url 'mainapp:index' %}" class="">
+            на главную
+        </a>
+    </button>
+</div>
+<div class="col-md-2" style="margin-top: 90px;">
+    <div class="user_avatar"><img src="/media/{{ request.user.avatar }}"></div>
+</div>
+{% endblock content %}
