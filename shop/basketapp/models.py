@@ -1,3 +1,30 @@
+from urllib import request
 from django.db import models
+from django.conf import settings
+from mainapp.models import Products
 
-# Create your models here.
+
+class BasketManager(models.Manager):
+    def count(self):
+        return len(self.all())
+    
+    def basket_sum_price(self, user):
+        sum = 0
+        for item in self.filter(user=user):
+            sum += item.product.price
+        return sum
+class Basket(models.Model):
+    class Meta:
+        unique_together = ['user', 'product']
+        verbose_name = 'Корзина'
+        verbose_name_plural = 'Товары в корзине'
+
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='basket')
+    product = models.ForeignKey(Products, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(verbose_name='количество', default=1)
+    add_datetime = models.DateTimeField(verbose_name='время', auto_now_add=True)
+
+    objects = BasketManager()
+
+    def __str__(self):
+        return (f'{self.user} {self.product}')

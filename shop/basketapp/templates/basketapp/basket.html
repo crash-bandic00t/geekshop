@@ -1,0 +1,26 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block content %}
+<div class="col-md-4">
+    {% if user.basket.count == 0 %}
+        <h2>Ваша корзина пуста</h2>
+    {% else %}
+        <h2>Ваша корзина</h2>
+        <br>
+        <table>
+            <tr>
+                <th>Наименование</th>
+                <th>Количество</th>
+                <th></th>
+            </tr>
+            {% for user_product in user_products %}
+            <tr>
+                <td>{{ user_product.product }}</td>
+                <td>{{ user_product.quantity }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <h4>Сумма ваших покупок: {{ full_price }}</h4>
+    {% endif %}
+</div>
+{% endblock content %}

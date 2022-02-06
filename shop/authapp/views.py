@@ -3,6 +3,7 @@ from mainapp.views import MENU_LINKS
 from authapp.forms import UserLoginForm, UserRegisterForm, UserEditForm
 from django.contrib import auth
 from django.urls import reverse
+from basketapp.models import Basket
 
 def login(request): 
     if request.method == 'POST':

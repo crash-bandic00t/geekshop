@@ -15,6 +15,11 @@
                 class="active"
             {% endif %}
             >{{ request.user.first_name }}</a>
+            <a href="{% url 'basketapp:basket' %}"
+            {% if request.resolver_match.view_name == 'basketapp:basket' %}
+                class="active"
+            {% endif %}
+            >корзина ({{ user.basket.count }})</a>
             <a href="{% url 'authapp:logout' %}">выйти</a>
         {% else %}
             <a href="{% url 'authapp:login' %}"
