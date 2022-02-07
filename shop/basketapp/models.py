@@ -8,11 +8,9 @@ class BasketManager(models.Manager):
     def count(self):
         return len(self.all())
     
-    def basket_sum_price(self, user):
-        sum = 0
-        for item in self.filter(user=user):
-            sum += item.product.price
-        return sum
+    def total_cost(self):
+        get_basket = self.all()
+        return sum(item.quantity * item.product.price for item in get_basket)
 class Basket(models.Model):
     class Meta:
         unique_together = ['user', 'product']

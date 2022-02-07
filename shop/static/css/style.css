@@ -136,6 +136,8 @@ html, body {
 	padding-left: 22px;
 }
 
+
+
 .green {
 	text-transform: uppercase;
 	color:  #43a047;
@@ -1028,6 +1030,7 @@ td:first-child {
 .related-products .block a img {
 	float: left;
 }
+
 .related-products .block {
 	float: left;
 	margin-right: 30px;
