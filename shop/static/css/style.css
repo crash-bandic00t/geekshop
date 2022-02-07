@@ -90,6 +90,10 @@ html, body {
 	left: 1210px;
 }
 
+.basket-input {
+	width: 90px;
+}
+
 .clearfix:after {
 	content: "";
 	display: block;
@@ -1029,6 +1033,9 @@ td:first-child {
 }
 .related-products .block a img {
 	float: left;
+}
+.related-products .block a img.product {
+	width: 368px;
 }
 
 .related-products .block {

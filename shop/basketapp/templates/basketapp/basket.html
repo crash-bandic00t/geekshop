@@ -1,7 +1,7 @@
 {% extends 'mainapp/base.html' %}
 {% load static %}
 {% block content %}
-<div class="col-md-4">
+<div class="col-md-6">
     {% if user.basket.count == 0 %}
         <h2>Ваша корзина пуста</h2>
     {% else %}
@@ -11,18 +11,28 @@
             <tr>
                 <th>Наименование</th>
                 <th>Количество</th>
+                <th>Цена</th>
                 <th></th>
             </tr>
             {% for user_product in user.basket.all %}
-            <tr>
+            <tr class="product-{{user_product.id}}">
                 <td>{{ user_product.product }}</td>
-                <td>{{ user_product.quantity }}</td>
+                <td>
+                    <input type="number" id="{{ user_product.id }}" min="0" value="{{ user_product.quantity }}" class="basket-input">
+                </td>
+                <td class="product-{{user_product.id}}-cost">
+                    {{ user_product.cost }}
+                </td>
                 <td><a href="{% url 'basketapp:basket-delete' user_product.id %}">Удалить</a></td>
             </tr>
             {% endfor %}
         </table>
         <br>
-        <h4>Сумма ваших покупок: <b>{{ user.basket.total_cost }}</b></h4>
+        <h4>Сумма ваших покупок: <span class="product-total-cost">{{ user.basket.total_cost }}</span></h4>
     {% endif %}
 </div>
 {% endblock content %}
+{% block scripts %}
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+{% endblock scripts %} 
