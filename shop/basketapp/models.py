@@ -8,11 +8,9 @@ class BasketManager(models.Manager):
     def count(self):
         return len(self.all())
     
-    def basket_sum_price(self, user):
-        sum = 0
-        for item in self.filter(user=user):
-            sum += item.product.price
-        return sum
+    def total_cost(self):
+        get_basket = self.all()
+        return sum(item.quantity * item.product.price for item in get_basket)
 class Basket(models.Model):
     class Meta:
         unique_together = ['user', 'product']
@@ -25,6 +23,9 @@ class Basket(models.Model):
     add_datetime = models.DateTimeField(verbose_name='время', auto_now_add=True)
 
     objects = BasketManager()
+
+    def cost(self):
+        return self.product.price * self.quantity
 
     def __str__(self):
         return (f'{self.user} {self.product}')

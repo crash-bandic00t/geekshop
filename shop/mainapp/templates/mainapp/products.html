@@ -9,12 +9,11 @@
 		<div class="related">
 			<div class="title clearfix">
 				<h2>Наши продукты</h2>
-				<a class="explore" href="#">показать все <img src="{% static 'img/arrow.png' %}" alt=""></a>
 			</div>
 			<div class="related-products clearfix">
 				{% for product in products %}
 					<div class="block">
-						<a href="{% url 'basketapp:basket-add' product.id %}"><img src="/media/{{ product.image }}" alt="">
+						<a href="{% url 'mainapp:product-detail' product.category.slug product.id %}"><img src="/media/{{ product.image }}" class="product" alt="">
 							<div class="text">
 								<img src="{% static 'img/icon-hover.png' %}" alt="img">
 								<h4>{{ product.name }}</h4>

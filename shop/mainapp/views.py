@@ -1,7 +1,7 @@
 from unicodedata import category
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from .models import *
-from basketapp.models import Basket
+import random
 
 
 MENU_LINKS = [
@@ -30,15 +30,24 @@ def index(request):
     })
 
 def products(request):
-    get_products = Products.objects.all()[:6]
+    get_products = Products.objects.all()
     get_categories = Category.objects.all()
     return render(request, 'mainapp/products.html', context={
         'title': 'Продукты',
         'class_name': 'hero-white',
         'menu_links': MENU_LINKS,
-        'products': get_products,
+        'products': random.choices(get_products, k=3),
         'categories': get_categories,
     })
+
+def product_detail(request, category, product_id):
+    get_product = get_object_or_404(Products, id=product_id)
+    return render(request, 'mainapp/product-detail.html', context={
+        'title': get_product.category.name,
+        'class_name': 'hero-white',
+        'menu_links': MENU_LINKS,
+        'product': get_product
+    })   
 
 def product_by_categoty(request, category):
     get_category = Category.objects.get(slug=category)

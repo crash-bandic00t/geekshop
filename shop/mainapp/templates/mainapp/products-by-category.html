@@ -14,12 +14,11 @@
 			<div class="related-products clearfix">
 				{% for product in products %}
 					<div class="block">
-						<a href="{% url 'basketapp:basket-add' product.id %}"><img src="/media/{{ product.image }}" alt="">
+						<a href="{% url 'mainapp:product-detail' product.category.slug product.id %}"><img src="/media/{{ product.image }}" alt="" class="product">
 							<div class="text">
 								<img src="{% static 'img/icon-hover.png' %}" alt="img">
 								<h4>{{ product.name }}</h4>
 								<p>{{ product.desc }}</p>
-								<p><b>Добавить в корзину</b></p>
 							</div>
 						</a>
 					</div>
