@@ -1,0 +1,35 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <h1 class="mt-3">Пользователи</h1>
+        <br>
+        <a href="{% url 'adminapp:add-user' %}" class="btn btn-secondary">Добавить</a>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Имя</th>
+                <th scope="col">Фамилия</th>
+                <th scope="col">Почта</th>
+                <th scope="col">Возраст</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                    {% if user.is_active %}
+                        <tr>
+                    {% else %}
+                        <tr class="table-active">
+                    {% endif %}
+                            <td>{{ user.first_name }}</td>
+                            <td>{{ user.last_name }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.age }}</td>
+                            <td class="text-end"><a href="{% url 'adminapp:edit-user' user.id %}" class="btn btn-outline-secondary btn-sm">Редактировать</a></td>
+                        </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}

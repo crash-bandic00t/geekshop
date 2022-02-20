@@ -1,10 +1,14 @@
 from django.db import models
+from pytils.translit import slugify
 
 
 class Category(models.Model):
     name = models.CharField('Наименование', max_length=50)
     slug = models.SlugField(null=False)
 
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        return super().save(*args, **kwargs)
     class Meta:
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'

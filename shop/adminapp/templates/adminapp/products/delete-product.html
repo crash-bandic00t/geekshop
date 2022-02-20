@@ -1,0 +1,12 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+       <h5 class="mt-3">Удалить продукт <b>{{ prod.name}}</b>?</h5>
+       <form method="post">
+            {% csrf_token %}
+            <input type="submit" value="Удалить" class="btn btn-danger">
+            <a href="{% url 'adminapp:edit-product' prod.id%}" class="btn btn-secondary">Назад</a>
+        </form>
+    </div>
+{% endblock content %}
