@@ -1,7 +1,6 @@
 from pdb import Pdb
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
-from mainapp.views import MENU_LINKS
 from mainapp.models import Products
 from .models import Basket
 from django.http import JsonResponse
@@ -12,7 +11,6 @@ def basket(request):
     return render(request, 'basketapp/basket.html', context={
         'title': 'Корзина',
         'class_name': 'hero-white',
-        'menu_links': MENU_LINKS
     })
 
 @login_required

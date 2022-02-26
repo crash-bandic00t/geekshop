@@ -1,9 +1,10 @@
-from django.shortcuts import render, HttpResponseRedirect
-from mainapp.views import MENU_LINKS
+from django.shortcuts import get_object_or_404, render, HttpResponseRedirect
 from authapp.forms import UserLoginForm, UserRegisterForm, UserEditForm
+from .models import User
 from django.contrib import auth
 from django.urls import reverse
 from basketapp.models import Basket
+from .utils import send_verify_mail
 
 def login(request): 
     if request.method == 'POST':
@@ -20,7 +21,6 @@ def login(request):
     return render(request, 'authapp/login.html', context={
         'title': 'Войти',
         'class_name': 'hero-white',
-        'menu_links': MENU_LINKS,
         'login_form': login_form
     })
 
@@ -34,7 +34,8 @@ def register(request):
         register_form = UserRegisterForm(request.POST, request.FILES)
     
         if register_form.is_valid():
-            register_form.save()
+            user = register_form.save()
+            send_verify_mail(user)
             return HttpResponseRedirect(reverse('authapp:login'))
     else:
         register_form = UserRegisterForm()
@@ -43,7 +44,6 @@ def register(request):
         'register_form': register_form,
         'title': 'Личный кабинет',
         'class_name': 'hero-white',
-        'menu_links': MENU_LINKS,
     }
     
     return render(request, 'authapp/register.html', content)
@@ -61,9 +61,17 @@ def edit(request):
     content = {
         'edit_form': edit_form,
         'title': 'Личный кабинет',
-        'class_name': 'hero-white',
-        'menu_links': MENU_LINKS,
+        'class_name': 'hero-white'
     }
     
     return render(request, 'authapp/edit.html', content)
 
+
+def verify(request, email, activation_key):
+    
+    user = get_object_or_404(User, email=email)
+    if user.activation_key == activation_key and not user.is_activation_key_expired():
+        user.is_active = True
+        user.save()
+        auth.login(request, user)
+    return render(request, 'authapp/verification.html')
