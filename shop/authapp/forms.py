@@ -7,6 +7,7 @@ from .models import User
 import hashlib
 import os
 
+
 class UserLoginForm(AuthenticationForm):
     class Meta:
         model = User
@@ -39,7 +40,6 @@ class UserRegisterForm(UserCreationForm):
         user.save()
 
         return user
-
 
     def clean_age(self):
         data = self.cleaned_data['age']

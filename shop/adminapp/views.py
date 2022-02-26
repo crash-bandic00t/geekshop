@@ -10,16 +10,15 @@ from .forms import AddCategoryForm, AddProductForm, AddUserForm
 
 
 class CategoriesView(ListView):
-    
+
     model = Category
     template_name = 'adminapp/categories/categories.html'
     context_object_name = 'categories'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Категории'    
-        return context 
-
+        context['title'] = 'Категории'
+        return context
 
 
 class AddCategoryView(CreateView):
@@ -31,8 +30,8 @@ class AddCategoryView(CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Добавить категорию'
-        
-        return context 
+
+        return context
 
 
 class EditCategoryView(UpdateView):
@@ -42,12 +41,12 @@ class EditCategoryView(UpdateView):
     template_name = 'adminapp/categories/edit-category.html'
     pk_url_kwarg = 'id'
     success_url = reverse_lazy('adminapp:categories')
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Изменить категорию'
-        
-        return context 
+
+        return context
 
 
 class DeleteCategoryView(DeleteView):
@@ -59,7 +58,7 @@ class DeleteCategoryView(DeleteView):
 
 
 class ProductsView(ListView):
-    
+
     model = Products
     template_name = 'adminapp/products/products.html'
     context_object_name = 'products'
@@ -67,9 +66,8 @@ class ProductsView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Продукты'    
-        return context 
-
+        context['title'] = 'Продукты'
+        return context
 
 
 class AddProductView(CreateView):
@@ -81,8 +79,8 @@ class AddProductView(CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Добавить продукт'
-        
-        return context 
+
+        return context
 
 
 class EditProductView(UpdateView):
@@ -92,12 +90,12 @@ class EditProductView(UpdateView):
     template_name = 'adminapp/products/edit-product.html'
     pk_url_kwarg = 'id'
     success_url = reverse_lazy('adminapp:products')
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Изменить продукт'
-        
-        return context 
+
+        return context
 
 
 class DeleteProductView(DeleteView):
@@ -109,16 +107,15 @@ class DeleteProductView(DeleteView):
 
 
 class UsersView(ListView):
-    
+
     model = User
     template_name = 'adminapp/users/users.html'
     context_object_name = 'users'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Пользователи'    
-        return context 
-
+        context['title'] = 'Пользователи'
+        return context
 
 
 class AddUserView(CreateView):
@@ -130,8 +127,8 @@ class AddUserView(CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Добавить пользователя'
-        
-        return context 
+
+        return context
 
 
 class EditUserView(UpdateView):
@@ -141,12 +138,12 @@ class EditUserView(UpdateView):
     template_name = 'adminapp/users/edit-user.html'
     pk_url_kwarg = 'id'
     success_url = reverse_lazy('adminapp:users')
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Изменить пользователя'
-        
-        return context 
+
+        return context
 
 
 class DeleteUserView(DeleteView):

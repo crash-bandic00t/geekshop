@@ -11,5 +11,5 @@ urlpatterns = [
         r'^verify/(?P<email>.+)/(?P<activation_key>\w+)/$',
         views.verify,
         name='verify'
-        ),
+    ),
 ]

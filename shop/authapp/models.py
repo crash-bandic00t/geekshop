@@ -17,7 +17,7 @@ class User(AbstractUser):
     activation_key = models.CharField(max_length=128, blank=True)
     activation_key_expire = models.DateTimeField(
         default=get_activation_key_expitarion_date
-        )
+    )
 
     def is_activation_key_expired(self):
         if timezone.localtime() <= self.activation_key_expire:

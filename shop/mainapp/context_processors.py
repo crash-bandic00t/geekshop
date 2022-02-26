@@ -14,6 +14,7 @@ MENU_LINKS = [
     }
 ]
 
+
 def menu_links(request):
     return {
         'menu_links': MENU_LINKS
