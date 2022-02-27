@@ -1,10 +1,11 @@
 from django.shortcuts import get_object_or_404, render, HttpResponseRedirect
-from authapp.forms import UserLoginForm, UserRegisterForm, UserEditForm
+from authapp.forms import UserLoginForm, UserRegisterForm, UserEditForm, UserProfileEditForm
 from .models import User
 from django.contrib import auth
 from django.urls import reverse
 from basketapp.models import Basket
 from .utils import send_verify_mail
+from django.db import transaction
 
 
 def login(request):
@@ -55,14 +56,19 @@ def edit(request):
     if request.method == 'POST':
         edit_form = UserEditForm(
             request.POST, request.FILES, instance=request.user)
-        if edit_form.is_valid():
+        profile_edit_form = UserProfileEditForm(
+            request.POST, instance=request.user.profile)
+        if edit_form.is_valid() and profile_edit_form.is_valid():
             edit_form.save()
+            profile_edit_form.save()
             return HttpResponseRedirect(reverse('authapp:edit'))
     else:
         edit_form = UserEditForm(instance=request.user)
+        profile_edit_form = UserProfileEditForm(instance=request.user.profile)
 
     content = {
         'edit_form': edit_form,
+        'profile_edit_form': profile_edit_form,
         'title': 'Личный кабинет',
         'class_name': 'hero-white'
     }
