@@ -40,7 +40,7 @@ class UserProfile(models.Model):
         (FEMALE, 'Женский'),
     )
 
-    user = models.OneToOneField(User, unique=True, null=False,
+    user = models.OneToOneField(User, null=False,
                                 db_index=True, on_delete=models.CASCADE, related_name='profile')
     aboutMe = models.TextField(verbose_name='о себе', max_length=512,
                                blank=True)

@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('authapp.urls', namespace='authapp')),
     path('', include('mainapp.urls', namespace='mainapp')),
-    path('', include('social_django.urls', namespace='social')),
+    path('oauth/', include('social_django.urls', namespace='social')),
     path('basket/', include('basketapp.urls', namespace='basketapp')),
     path('my-admin/', include('adminapp.urls', namespace='adminapp'))
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

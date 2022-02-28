@@ -78,5 +78,8 @@ class UserProfileEditForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(UserProfileEditForm, self).__init__(*args, **kwargs)
-        for field_name, field in self.fields.items():
-            field.widget.attrs['class'] = 'form-control'
+        self.fields['aboutMe'].widget.attrs['class'] = 'form-control'
+        self.fields['gender'].widget.attrs['class'] = 'form-select'
+        self.fields['gender'].empty_label = 'Выберите пол'
+
+        
