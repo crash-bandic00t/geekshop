@@ -3,6 +3,7 @@ from django.core.exceptions import ValidationError
 from django import forms
 
 from .models import User
+from .models import UserProfile
 
 import hashlib
 import os
@@ -69,3 +70,16 @@ class UserEditForm(UserChangeForm):
             raise ValidationError("Вы слишком молоды!")
 
         return data
+
+class UserProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ('aboutMe', 'gender')
+
+    def __init__(self, *args, **kwargs):
+        super(UserProfileEditForm, self).__init__(*args, **kwargs)
+        self.fields['aboutMe'].widget.attrs['class'] = 'form-control'
+        self.fields['gender'].widget.attrs['class'] = 'form-select'
+        self.fields['gender'].empty_label = 'Выберите пол'
+
+        
