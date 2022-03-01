@@ -71,6 +71,13 @@ html, body {
 	border-bottom: 3px solid #212121;
 }
 
+.dropdown-link:hover {
+	border-bottom: none !important;
+}
+.dropdown-link:active {
+	border-bottom: none !important;
+}
+
 .search {
 	display: block;
 	width: 23px;

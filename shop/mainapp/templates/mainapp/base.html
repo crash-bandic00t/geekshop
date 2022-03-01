@@ -8,6 +8,8 @@
 	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 	<link rel="stylesheet" href="{% static 'fonts/css/font-awesome.css' %}">
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script> 
+    <script src="{% static 'js/bootstrap.bundle.js' %}"></script> 
 </head>
 <body>
 	<div class="container">
@@ -16,7 +18,6 @@
 				<a href="{% url 'mainapp:index' %}" class="logo"></a>
 				{% include 'mainapp/includes/menu.html' %}
 				<a href="#" class="search"></a>
-				<a href="#" class="basket"></a>
 			</div>
             {% block header %}
             {% endblock header %}
@@ -52,6 +53,6 @@
         <p class="small">Положения &amp; Условия  /  Конфиденциальность &amp; Cookies</p>
     </div>	
    {% block scripts %}
-   {% endblock scripts %} 
+   {% endblock scripts %}
 </body>
 </html>
